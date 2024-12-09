@@ -19,24 +19,23 @@ def eval_numerical_gradient(f, x):
         # evaluate function at x+h
         ix = it.multi_index
         x[ix] += h  # increment by h
-        fxh = f(x)  # evalute f(x + h)
+        fxh = f(x)  # evaluate f(x + h)
         x[ix] -= h  # restore to previous value (very important!)
 
         # compute the partial derivative
         grad[ix] = (fxh - fx) / h  # the slope
-        print ix, grad[ix]
+        print(ix, grad[ix])
         it.iternext()  # step to next dimension
     return grad
 
 
 def grad_check_sparse(f, x, analytic_grad, num_checks):
     """
-  sample a few random elements and only return numerical
-  in this dimensions.
+  sample a few random elements and only return numerical in these dimensions.
   """
     h = 1e-5
 
-    for i in xrange(num_checks):
+    for i in range(num_checks):
         ix = tuple([randrange(m) for m in x.shape])
 
         x[ix] += h  # increment by h
@@ -49,5 +48,4 @@ def grad_check_sparse(f, x, analytic_grad, num_checks):
         grad_analytic = analytic_grad[ix]
         rel_error = abs(grad_numerical - grad_analytic) / (
         abs(grad_numerical) + abs(grad_analytic))
-        print 'numerical: %f analytic: %f, relative error: %e' % (
-        grad_numerical, grad_analytic, rel_error)
+        print(f'numerical: {grad_numerical} analytic: {grad_analytic}, relative error: {rel_error}')
