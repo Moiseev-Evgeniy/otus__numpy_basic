@@ -1,1 +1,1 @@
-from logistic_regression import LogisticRegression
+from dmia.classifiers.logistic_regression import LogisticRegression
